@@ -28,5 +28,15 @@
  *   // => "INVALID"
  */
 export function maskAadhaar(aadhaarNumber) {
-  // Your code here
+  if (typeof aadhaarNumber !== "string" || aadhaarNumber === "" || aadhaarNumber.length !== 12 || isNaN(aadhaarNumber)) return "INVALID";
+
+  const last = aadhaarNumber.slice(-4);
+  return `XXXX-XXXX-${last}`;
+
+  
+  //re-searching--
+  /**isNaN() has flaws: While your .length === 12 check saves you from some issues, isNaN()
+   * can sometimes yield unexpected results 
+   * (like treating strings with spaces or the letter e as valid numbers in mathematical contexts). */
+  //solution--> check if-->   !/^\d{12}$/.test(aadhaarNumber)
 }
